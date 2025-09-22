@@ -1317,8 +1317,7 @@ body {
   </script>
 
   <audio id="bg-music" autoplay loop muted>
-    <source src="floreditado.mp3" type="audio/mpeg">
-    Tu navegador no soporta audio.
+    <source src="/Final.mp3" type="audio/mpeg">
   </audio>
 
   <!-- Botón flotante -->
@@ -1328,12 +1327,29 @@ body {
     const music = document.getElementById("bg-music");
     const toggleBtn = document.getElementById("music-toggle");
 
+    // Mostrar mensaje para activar música
+    const msg = document.createElement("div");
+    msg.textContent = "Haz clic en cualquier parte para escuchar la música 🎵";
+    msg.style.position = "fixed";
+    msg.style.top = "50%";
+    msg.style.left = "50%";
+    msg.style.transform = "translate(-50%, -50%)";
+    msg.style.background = "rgba(0,0,0,0.8)";
+    msg.style.color = "#fff";
+    msg.style.padding = "2vmin 4vmin";
+    msg.style.borderRadius = "2vmin";
+    msg.style.fontSize = "3vmin";
+    msg.style.zIndex = "1000";
+    msg.style.textAlign = "center";
+    document.body.appendChild(msg);
+
     // Activar sonido tras el primer clic en cualquier parte
     document.addEventListener("click", () => {
       if (music.muted) {
         music.muted = false;
         music.play();
         toggleBtn.textContent = "🎵";
+        msg.remove();
       }
     }, { once: true });
 
